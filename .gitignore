@@ -50,3 +50,11 @@ compile_commands.json
 
 # QtCreator local machine specific files for imported projects
 *creator.user*
+
+mnist_test_10.csv
+
+mnist_test.csv
+
+mnist_train_100.csv
+
+mnist_train.csv
