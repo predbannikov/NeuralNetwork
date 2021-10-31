@@ -16,8 +16,8 @@ class neuralNetwork:
 
 
 
-        data_files = open("F:\\projects\\neuralnetwork\\mnist_train_100.csv", 'r')
-        # data_files = open("F:\\projects\\neuralnetwork\\mnist_train.csv", 'r')
+        data_files = open("H:\\projects\\neuralnetwork\\mnist_train.csv", 'r')
+        # data_files = open("H:\\projects\\neuralnetwork\\mnist_train.csv", 'r')
 
         self.data_list = data_files.readlines()
         data_files.close()
@@ -25,8 +25,8 @@ class neuralNetwork:
         print( "__init__", 1)
 
 
-        test_data_file = open("F:\\projects\\neuralnetwork\\mnist_test_10.csv", 'r')
-        # test_data_file = open("F:\\projects\\neuralnetwork\\mnist_test.csv", 'r')
+        test_data_file = open("H:\\projects\\neuralnetwork\\mnist_test.csv", 'r')
+        # test_data_file = open("H:\\projects\\neuralnetwork\\mnist_test.csv", 'r')
         self.test_data_list = test_data_file.readlines();
         test_data_file.close()
 
@@ -49,9 +49,8 @@ class neuralNetwork:
         print("wih " , self.wih.shape)
         print("who " , self.who.shape)
         
-
-#         print("Весы входящего скрытого\n", self.wih)
-#         print("Весы выходящего скрытого\n",self.who)
+        #print("Весы входящего скрытого\n", self.wih)
+        #print("Весы выходящего скрытого\n",self.who)
         
         self.activation_func = lambda x: scipy.special.expit(x)
         pass
@@ -64,12 +63,12 @@ class neuralNetwork:
             "outputnodes": self.onodes
             
         }
-        with open("F:\\projects\\test\\build-simpleClassifier-Desktop_Qt_5_14_1_MSVC2017_32bit-Debug\\option.json", 'w') as outfile:
+        with open("H:\\projects\\neuralnetwork\\option.json", 'w') as outfile:
             json.dump(data, outfile)
     
 
-        numpy.savetxt("F:\\projects\\test\\build-simpleClassifier-Desktop_Qt_5_14_1_MSVC2017_32bit-Debug\\w1.csv", self.wih, delimiter=",")
-        numpy.savetxt("F:\\projects\\test\\build-simpleClassifier-Desktop_Qt_5_14_1_MSVC2017_32bit-Debug\\w2.csv", self.who, delimiter=",")
+        numpy.savetxt("H:\\projects\\neuralnetwork\\w1.csv", self.wih, delimiter=",")
+        numpy.savetxt("H:\\projects\\neuralnetwork\\w2.csv", self.who, delimiter=",")
         
         
 
@@ -77,7 +76,7 @@ class neuralNetwork:
     
     #Тренировка сети
     def train(self, input_list, targets_list):
-        print( "train")
+        #print( "train")
         inputs = numpy.array(input_list, ndmin = 2).T
         targets = numpy.array(targets_list, ndmin = 2).T
 #         print("Входящий сигнал скрытого слоя\n",inputs)
@@ -102,7 +101,7 @@ class neuralNetwork:
     
     #Опрос сети
     def query(self, input_list):
-        print( "query")
+        #print( "query")
         inputs = numpy.array(input_list, ndmin = 2).T
 #         print("Входящий сигнал скрытого слоя\n",inputs)
         hidden_inputs = numpy.dot(self.wih, inputs)
@@ -148,8 +147,10 @@ class neuralNetwork:
     def runing(self):
         print( "runing")
 
-
-        n = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
+        print(self.inodes)
+        print(self.hnodes)
+        print(self.onodes)
+        #n = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
 
 
             # line = data_list[2]
@@ -158,7 +159,7 @@ class neuralNetwork:
         # print("len line = ", len(all_values))
         # image_array = numpy.asfarray(all_values[1:]).reshape((28, 28))
         # plot.imshow(image_array)
-        epochs = 3
+        epochs = 1
         res = []
         for e in range(epochs):
             print("эпоха ", e)
@@ -180,8 +181,10 @@ class neuralNetwork:
         pass
     pass
 pass
-# input_nodes = 784
-# hidden_nodes = 100
-# output_nodes = 10
-# learning_rate = 0.2
-# n = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
+input_nodes = 784
+hidden_nodes = 100
+output_nodes = 10
+learning_rate = 0.3
+
+n = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
+n.runing()

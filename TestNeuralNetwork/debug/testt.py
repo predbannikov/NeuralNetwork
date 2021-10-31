@@ -10,3 +10,5 @@ def myrun(a):
     #firstRow = beta[0,:]
     print( n)
     return n
+
+myrun(0)
